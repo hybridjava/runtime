@@ -1,0 +1,21 @@
+<project default="jar">
+	<property name="P" value="com\HybridJava\Sample"/>
+	<property name="P_LIB" value="com\HybridJava\Lib"/>
+	<target name="prep">
+		<mkdir dir="classes"/>
+		<delete dir="classes\com"/>
+	</target>
+	<target name="javac" depends="prep" >
+		<javac debug="on" srcdir="." destdir="classes" source="1.5">
+			<classpath>
+				<pathelement location="..\lib\HybridJava.jar"/>
+        		<pathelement location="..\lib\servlet-2_3-fcs-classfiles.jar"/>
+			</classpath>
+			<include name="com\HybridServerPages\*.java"/>
+		</javac>
+	</target>	
+	<target name="jar" depends="javac">
+		<jar jarfile="HybridJava_rt.jar" basedir="classes" includes="**/*.class"/>
+	</target>
+</project>
+
